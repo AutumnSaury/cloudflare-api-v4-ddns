@@ -19,7 +19,7 @@ else
         RECORD=$RECORD.$CFZONE_NAME
         CFRECORD_ID=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones/$CFZONE_ID/dns_records?name=$RECORD" -H "X-Auth-Email: $CFUSER" -H "X-Auth-Key: $CFKEY" -H "Content-Type: application/json"  | grep -Po '(?<="id": ")[^"]*' )
 
-        RESPONSE=$(curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/$CFZONE_ID/dns_records/$CFRECORD_ID" \
+        curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/$CFZONE_ID/dns_records/$CFRECORD_ID" \
         -H "X-Auth-Email: $CFUSER" \
         -H "X-Auth-Key: $CFKEY" \
         -H "Content-Type: application/json" \
